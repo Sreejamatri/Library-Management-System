@@ -1,0 +1,116 @@
+<button class="btn btn-outline-secondary back-btn" (click)="goBack()">
+    <i class="fa fa-arrow-left"></i> Back
+  </button>
+
+  <div class="background-container">
+    <div class="main">
+        <div class="title-wrapper">
+            <h1 class="page-title">Books Management</h1>
+          </div>
+         
+ 
+<div class="btndiv">
+  <button class="btn btn-primary" (click)="getAllBooks()">
+    <i class="fa-solid fa-book"></i>&nbsp; Display Books
+  </button>
+ 
+  <button class="btn btn-warning" (click)="addBookRecord()">
+    <i class="fa-solid fa-plus"></i>&nbsp; Add Book Record
+  </button>
+</div>
+ 
+<div class="search-filter-container">
+  <input class="form-control filter-author" placeholder="Search by Author" [(ngModel)]="searchAuthor" (input)="filterBooks()"/>
+ 
+  <select class="form-control filter-category" [(ngModel)]="selectedCategory" (change)="filterBooks()">
+    <option value="">Book Categories</option>
+    <option *ngFor="let category of bookCategories" [value]="category">{{ category }}</option>
+  </select>
+ 
+  <input class="form-control filter-title" placeholder="Search by Title" [(ngModel)]="searchTitle" (input)="filterBooks()"/>
+ 
+  <select class="form-control filter-availability" [(ngModel)]="selectedAvailability" (change)="filterBooks()">
+    <option value="">Book Availability</option>
+    <option value="Available">Available</option>
+    <option value="Not_Available">Not Available</option>
+  </select>
+</div>
+ 
+<div *ngIf="bDisplayAddOrEditRecord === false && bDisplay === true">
+  <table class="table table-hover table-border">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Title</th>
+        <th>Availability</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of filteredBooks">
+        <td>{{ book.bookId }}</td>
+        <td>{{ book.bookAuthor }}</td>
+        <td>{{ book.bookCategory }}</td>
+        <td>{{ book.bookTitle }}</td>
+        <td>{{ book.bookAvailability }}</td>
+        <td>
+          <button class="btn btn-warning" (click)="editRecord(book)">
+            <i class="fa-solid fa-pen"></i> Edit
+          </button>
+          <button class="btn btn-danger" (click)="deleteRecord(book.bookId)">
+            <i class="fa-solid fa-trash"></i> Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="filteredBooks.length === 0" class="no-data-message">
+    <p>No Data Found</p>
+  </div>
+</div>
+ 
+<div id="loginForm" *ngIf="bDisplayAddOrEditRecord === true && bDisplay === false">
+  <form [formGroup]="bookForm" (ngSubmit)="AddingOrEditARecord()" novalidate>
+    <h2 class="text-center">{{ strDisplayHeaderTagForAddOrEdit }}</h2>
+ 
+    <label>Book ID</label>
+    <input type="text" formControlName="bookId" [readonly]="strDisplayHeaderTagForAddOrEdit === 'Edit Record'" />
+    <div *ngIf="bookForm.get('bookId')?.touched && bookForm.get('bookId')?.invalid" class="error">Book ID is required.</div>
+ 
+    <label>Book Title</label>
+    <input type="text" formControlName="bookTitle" />
+    <div *ngIf="bookForm.get('bookTitle')?.touched && bookForm.get('bookTitle')?.invalid" class="error">Book Title is required.</div>
+ 
+    <label>Book Author</label>
+    <input type="text" formControlName="bookAuthor" />
+    <div *ngIf="bookForm.get('bookAuthor')?.touched && bookForm.get('bookAuthor')?.invalid" class="error">Book Author is required.</div>
+ 
+    <label>Book Category</label>
+    <select formControlName="bookCategory">
+      <option value="">Select Category</option>
+      <option value="Classic">Classic</option>
+      <option value="Science">Science</option>
+      <option value="Dystopian">Dystopian</option>
+      <option value="Fantasy">Fantasy</option>
+      <option value="Adventure">Adventure</option>
+      <option value="Romance">Romance</option>
+      <option value="Drama">Drama</option>
+      <option value="Fiction">Fiction</option>
+    </select>
+    <div *ngIf="bookForm.get('bookCategory')?.touched && bookForm.get('bookCategory')?.invalid" class="error">Book Category is required.</div>
+ 
+    <label>Book Availability</label>
+    <select formControlName="bookAvailability">
+      <option value="">Select Availability</option>
+      <option value="Available">Available</option>
+      <option value="Not_Available">Not Available</option>
+    </select>
+    <div *ngIf="bookForm.get('bookAvailability')?.touched && bookForm.get('bookAvailability')?.invalid" class="error">Book Availability is required.</div>
+ 
+    <button class="btn btn-success" type="submit" [disabled]="bookForm.invalid">Submit</button>
+  </form>
+</div>
+</div>
+</div>

@@ -1,0 +1,16 @@
+<div class="background-container">
+  <img src="../bg.jpg" alt="Background" class="background-image" />
+<div class="admin-dashboard">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <button class="btn btn-outline-secondary back-btn" (click)="goBack()">
+    <i class="fa fa-arrow-left"></i> Back
+  </button>
+    <h2 style="color: black; font-size:30px;font-family:'Times New Roman', Times, serif">WELCOME TO ADMIN DASHBOARD</h2>
+   
+    <div class="button-group">
+      <button class="btn btn-success" (click)="navigateTo('books')">Manage Books</button>
+      <button class="btn btn-warning" (click)="navigateTo('users')">Manage Users</button>
+      <button class="btn btn-primary" (click)="navigateTo('library')">Manage Libraries</button>
+    </div>
+</div>
+</div>

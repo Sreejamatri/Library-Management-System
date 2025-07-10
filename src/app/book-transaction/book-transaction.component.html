@@ -1,0 +1,99 @@
+<nav class="nav" style="background-color: transparent;"> <!--bg-dark-->
+  <button class="btn btn-dark" id="navButtons" (click)="findAvailableBooks()"><b>Get All Books</b></button>
+  <button class="btn btn-dark" id="navButtons" (click)="findBookstoReturn()"><b>Books Taken</b></button> <br> <br>
+  <br><br>
+  <h3 id="navBarHeading"><b>LIBRARY MANAGEMENT SYSTEM</b></h3>
+  <button class="btn btn-dark" id="navButtons" style="margin-left:240px" (click)="logout()"><b>Logout</b></button>
+</nav>
+
+<div class="background-container">
+  <div *ngIf="welcomeToLibrary==true">
+    <div class="card welcome-card">
+      <div class="card-body">
+        <b> WELCOME TO OUR LIBRARY </b>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row" style="margin-top: 3rem" *ngIf="borrow == true">
+    <div class="cen">
+      <button class="btn btn-primary" (click)="borrowAllBooks(BorrowedBooks)">Borrow Now</button>
+    </div>
+    <div class="col-sm-3" *ngFor="let b of Books">
+      <div class="card">
+        <img [src]="b.bookTitle + '.jpg'" style="height: 250px;" >
+        <div class="card-title">{{b.bookTitle}}</div>
+        <div class="card-body">
+          <li class="list-group-item"><b>Author: </b>{{b.bookAuthor}}</li>
+          <li class="list-group-item"><b>Category: </b>{{b.bookCategory}}</li>
+          <li class="list-group-item"><b>Availability: </b>{{b.bookAvailability}}</li>
+        </div>
+        <div class="card-footer">
+          <input class="checkbox" type="checkbox" id={{b.bookId}} (change)="checkStatusBorrowed($event,b.bookId)">
+          <label class="Borrow_checkbox" for={{b.bookId}}>Borrow</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="borrowed==true">
+    <h1 style="margin-top: 3rem;margin-right: 900px;font-size: 30px; text-align: center;"><b>BORROWED BOOKS</b></h1>
+    <div class="row">
+      <div class="col-sm-3" *ngFor="let borrowed of BorrowedBooks">
+        <div *ngFor="let b of Books">
+          <div *ngIf="b.bookId==borrowed">
+            <div class="card">
+              <img [src]="b.bookTitle + '.jpg'" style="height: 250px;" class="card-img-top">
+              <div class="card-title">{{b.bookTitle}}</div>
+              <div class="card-body">
+                <li class="list-group-item"><b>Author: </b>{{b.bookAuthor}}</li>
+                <li class="list-group-item"><b>Category: </b>{{b.bookCategory}}</li>
+                <li class="list-group-item"><b>Availability: </b>{{b.bookAvailability}}</li>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row" style="margin-top: 3rem" *ngIf="return == true">
+    <div class="cen">
+      <button class="btn btn-primary" (click)="returnBooks(ReturnedBooks)">Return Books</button>
+    </div>
+    <div class="col-sm-3" *ngFor="let b of booksToBeReturned">
+      <div *ngFor="let t of transactionLst">
+        <div *ngIf="b.bookId==t.bookId">
+          <div class="card">
+            <img [src]="b.bookTitle + '.jpg'" style="height: 250px;" class="card-img-top">
+            <div class="card-title">{{b.bookTitle}}</div>
+            <div class="card-body">
+              <li class="list-group-item"><b>Author: </b>{{b.bookAuthor}}</li>
+              <li class="list-group-item"><b>Category: </b>{{b.bookCategory}}</li>
+              <li class="list-group-item"><b>Availability: </b>{{b.bookAvailability}}</li>
+              <li class="list-group-item"><b>Return By: </b>{{t.expectedReturnDate}}</li>
+              <li class="list-group-item"><b>Overdue days: </b>{{t.overdue}}</li>
+              <li class="list-group-item"><b>Fine: </b>{{t.fine}}</li>
+            </div>
+            <div class="card-footer">
+              <input class="checkbox" type="checkbox" id={{b.bookId}} (change)="checkStatusReturned($event,b.bookId)">
+              <label class="Borrow_checkbox" for={{b.bookId}}>Return</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="returnPageWithNoFine==true">
+    <div class="card return-card">
+      <div class="card-body" style="font-size: 30px;">
+        <b> Books Returned...Thank You For Visiting Our Page... </b>
+      </div>
+    </div>
+  </div>
+</div>

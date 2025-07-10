@@ -1,0 +1,89 @@
+<div class="payment-fullpage">
+    <div class="payment-content-wrapper">
+      <div class="card-style">
+        <div class="payment-content">
+          <div class="container py-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h2 class="text-gradient fw-bold">Your Payment Dashboard</h2>
+              <button class="btn btn-dark" (click)="goBack()">
+                <i class="bi bi-arrow-left"></i> Back
+              </button>
+            </div>
+   
+            <div *ngIf="selectedTransactions.length > 0; else noSelection">
+              <div class="row g-4">
+                <div class="col-md-6 col-lg-4" *ngFor="let t of selectedTransactions">
+                  <div class="card border-0 shadow-lg h-100 position-relative">
+                    <!-- <button class="btn-close position-absolute top-0 end-0 m-2" aria-label="Close"
+                      (click)="removeTransaction(t.transactionId)"></button> -->
+                    <div class="card-body">
+                      <h5 class="card-title text-primary">Transaction : {{ t.transactionId }}</h5>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Book ID:</strong> {{ t.bookId }}</li>
+                        <li class="list-group-item"><strong>Return Date:</strong> {{ t.expectedReturnDate}}</li>
+                        <li class="list-group-item"><strong>Fine:</strong> ₹{{ t.fine }}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+   
+   
+              <div class="text-center mt-5">
+                <h3 class="text-success fw-bold">Total Fine: ₹{{ totalFine }}</h3>
+                <!-- <button class="btn btn-gradient px-5 py-2" (click)="payFine()">
+                  <i class="bi bi-credit-card-fill me-2"></i> Pay Now
+                </button> -->
+              </div>
+             
+              <!-- 👇 Add the form here -->
+              <div class="payment-method-form mt-5">
+                <h4 class="fw-bold mb-3">Choose Payment Method</h4>
+                <form (ngSubmit)="payFine()" #paymentForm="ngForm">
+                  <div class="mb-3">
+                    <label for="method" class="form-label">Payment Type</label>
+                    <select id="method" class="form-select" [(ngModel)]="paymentMethod" name="method" required>
+                      <option value="" disabled selected>Select a method</option>
+                      <option value="debit">Debit Card</option>
+                      <option value="credit">Credit Card</option>
+                      <option value="upi">UPI</option>
+                    </select>
+                  </div>
+             
+                  <div *ngIf="paymentMethod === 'debit' || paymentMethod === 'credit'">
+                    <div class="mb-3">
+                      <label for="cardNumber" class="form-label">Card Number</label>
+                      <input type="text" id="cardNumber" class="form-control" [(ngModel)]="cardNumber" name="cardNumber" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="expiry" class="form-label">Expiry Date</label>
+                      <input type="month" id="expiry" class="form-control" [(ngModel)]="expiryDate" name="expiryDate" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="cvv" class="form-label">CVV</label>
+                      <input type="password" id="cvv" class="form-control" [(ngModel)]="cvv" name="cvv" required>
+                    </div>
+                  </div>
+             
+                  <div *ngIf="paymentMethod === 'upi'">
+                    <div class="mb-3">
+                      <label for="upiId" class="form-label">UPI ID</label>
+                      <input type="text" id="upiId" class="form-control" [(ngModel)]="upiId" name="upiId" required>
+                    </div>
+                  </div>
+             
+                  <button type="submit" class="btn btn-gradient px-4 py-2">Submit Payment</button>
+                </form>
+              </div>
+            </div>
+   
+            <ng-template #noSelection>
+              <div class="alert alert-warning text-center mt-5">
+                <i class="bi bi-exclamation-circle-fill me-2"></i> No transactions selected for payment.
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

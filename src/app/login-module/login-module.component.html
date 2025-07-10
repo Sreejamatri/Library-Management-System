@@ -1,0 +1,53 @@
+<!-- Main container for the background image and login/register card -->
+<div class="background-container">
+
+  <!-- Background image for visual appeal -->
+  <img src="../bg.jpg" alt="Background" class="background-image" />
+
+
+  <!-- Flip container to switch between login and register views -->
+  <div class="flip-container" [class.flipped]="isFlipped">
+    <div class="flipper">
+
+      <!-- Front side: Login form -->
+      <div class="front">
+        <h2 style="color: aliceblue; font-family:'Poppins', sans-serif">LOGIN</h2>
+
+        <!-- Login form that triggers the login() method on submit -->
+        <form (ngSubmit)="login()">
+          <!-- Two-way data binding for email input -->
+          <input type="email" [(ngModel)]="email" name="email" placeholder="Enter Email" required />
+
+          <!-- Two-way data binding for password input -->
+          <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required />
+
+          <!-- Submit button for login -->
+          <button type="submit">Login</button>
+
+          <!-- Error message display if login fails -->
+          <p class="error" *ngIf="message">{{ message }}</p>
+
+          <!-- Link to flip the card to the register view -->
+          <p class="flip-link" style="color: aliceblue;" (click)="toggleFlip()">
+            Don't have an account? Register
+          </p>
+        </form>
+      </div>
+
+      <!-- Back side: Register prompt -->
+      <div class="back">
+        <h2 style="color: aliceblue;">Register</h2>
+        <p style="color: aliceblue;">Click below to register as a new member.</p>
+
+        <!-- Button to navigate to the registration page -->
+        <button (click)="goToRegister()">Go to Register</button>
+
+        <!-- Link to flip back to the login view -->
+        <p class="flip-link" style="color: aliceblue;" (click)="toggleFlip()">
+          Already have an account? Login
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>

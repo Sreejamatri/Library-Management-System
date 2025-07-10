@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    background-image: url('../../../public/bms3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: fixed;
+    min-height: 95vh;
+  }
+  header {
+    text-align: center;
+    padding: 60px 20px;
+  }
+  header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+  header p {
+    font-size: 1.2em;
+    max-width: 700px;
+    margin: auto;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 5px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .back-btn {
+      position: absolute;
+      top: 20px;
+      right: 10px;
+      z-index: 1000;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      background-color: white;
+      border: 2px solid #6c757d;
+      color: #6c757d;
+      transition: all 0.3s ease;
+      margin-top: -15px;
+    }
+    
+    .back-btn:hover {
+      background-color: #6c757d;
+      color: white;
+    }
+
+    .glass-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      margin: 99px auto;
+      max-width: 800px;
+      text-align: center;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    .glass-box h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .glass-box p {
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

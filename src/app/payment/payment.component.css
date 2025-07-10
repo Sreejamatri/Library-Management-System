@@ -1,0 +1,94 @@
+.payment-fullpage {
+    background: linear-gradient(to bottom right, #C3CCAF, #67434F);
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 2rem;
+  }
+   
+   
+   
+  .payment-content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+   
+  .card-style {
+    background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    width: 100%;
+    z-index: 2;
+  }
+   
+  .payment-content {
+    width: 100%;
+  }
+   
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+   
+  ul {
+    padding-left: 0;
+  }
+   
+  ul li {
+    margin-bottom: 0.5rem;
+  }
+   
+  .list-group-item {
+    font-size: 0.95rem;
+  }
+   
+  .btn-success {
+    font-size: 1.1rem;
+  }
+   
+  .btn-gradient {
+    background: linear-gradient(to right, #0d6efd, #6610f2);
+    color: white;
+    border: none;
+    transition: transform 0.2s ease;
+  }
+   
+  .btn-gradient:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+   
+  .text-gradient {
+    background: linear-gradient(to right, #ff4d4d, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .payment-method-form {
+    background: #fff;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+   
+  .payment-method-form h4 {
+    color: #333;
+  }
+   
+  .payment-method-form .form-label {
+    font-weight: 500;
+  }
+   
+  .payment-method-form .form-control,
+  .payment-method-form .form-select {
+    border-radius: 0.5rem;
+  }
